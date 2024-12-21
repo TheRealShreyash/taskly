@@ -19,16 +19,37 @@ function App() {
 
     return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
   };
-  const handleTodoChange = (e) => {
-    setTodo(e.target.value);
-  };
 
   const handleSave = () => {
     setTodos([...todos, { id: uuid(), todo, isCompleted: false }]);
     setTodo("");
   };
-  const handleEdit = () => {};
-  const handleDelete = () => {};
+  const handleEdit = (e, id) => {
+    let t = todos.filter((i) => i.id === id);
+    setTodo(t[0].todo);
+    let newTodos = todos.filter((item) => {
+      return item.id !== id;
+    });
+    setTodos(newTodos);
+  };
+  const handleDelete = (e, id) => {
+    const newTodos = todos.filter((item) => item.id !== id);
+    setTodos(newTodos);
+  };
+
+  const handleChange = (e) => {
+    let id = e.target.name;
+    let i = todos.findIndex((item) => {
+      return item.id === id;
+    });
+    let newTodos = [...todos];
+    newTodos[i].isCompleted = !newTodos[i].isCompleted;
+    setTodos(newTodos);
+  };
+
+  const handleTodoChange = (e) => {
+    setTodo(e.target.value);
+  };
 
   useEffect(() => {
     setCurrentTime(formatDate());
@@ -45,7 +66,9 @@ function App() {
       <div className="container bg-diffYellow mx-auto my-20 w-[80vw] h-[80vh] min-h-[80vh] min-w-[80vw] rounded-2xl text-black font-comfortaa">
         <div className="inputthing flex justify-center py-3">
           <input
-            onChange={handleTodoChange}
+            onChange={(e) => {
+              handleTodoChange(e);
+            }}
             value={todo}
             type="text"
             name=""
@@ -65,13 +88,25 @@ function App() {
             {todos.map((item) => {
               return (
                 <div key={item.id} className="todo flex gap-5 py-2">
-                  <input type="checkbox" name="" id="" />
-                  <p className="todotext bg-diffBlue text-white font-bold rounded-xl p-2">
+                  <input
+                    onChange={handleChange}
+                    checked={item.isCompleted}
+                    type="checkbox"
+                    name={item.id}
+                    id=""
+                  />
+                  <p
+                    className={`todotext bg-diffBlue text-white font-bold rounded-xl p-2 ${
+                      item.isCompleted ? "line-through" : ""
+                    }`}
+                  >
                     {item.todo}
                   </p>
                   <div className="buttons flex gap-3 align-middle">
                     <button
-                      onClick={handleEdit}
+                      onClick={(e) => {
+                        handleEdit(e, item.id);
+                      }}
                       className="bg-white rounded-3xl p-1"
                     >
                       <svg
@@ -104,7 +139,9 @@ function App() {
                       </svg>
                     </button>
                     <button
-                      onClick={handleDelete}
+                      onClick={(e) => {
+                        handleDelete(e, item.id);
+                      }}
                       className="bg-white rounded-3xl p-1"
                     >
                       <svg
