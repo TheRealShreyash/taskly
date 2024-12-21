@@ -12,6 +12,14 @@ body {
     box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8);
 }
 
+.editbtn:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8);
+}
+
+.delbtn:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8);
+}
+
 .todos {
     align-items: center;
 }

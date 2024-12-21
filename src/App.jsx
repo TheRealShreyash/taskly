@@ -63,7 +63,7 @@ function App() {
 
   return (
     <>
-      <div className="container bg-diffYellow mx-auto my-20 w-[80vw] h-[80vh] min-h-[80vh] min-w-[80vw] rounded-2xl text-black font-comfortaa">
+      <div className="container bg-diffYellow mx-auto my-16 w-[80vw] h-[80vh] min-h-[80vh] min-w-[80vw] rounded-2xl text-black font-comfortaa">
         <div className="inputthing flex justify-center py-3">
           <input
             onChange={(e) => {
@@ -77,7 +77,8 @@ function App() {
           />
           <button
             onClick={handleSave}
-            className="addbtn rounded-r-xl p-2 bg-white text-black font-bold cursor-pointer transition-shadow duration-300"
+            disabled={todo.length <= 3}
+            className="addbtn rounded-r-xl p-2 bg-white text-black font-bold cursor-pointer transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-[0.6]"
           >
             I Got This!
           </button>
@@ -107,7 +108,7 @@ function App() {
                       onClick={(e) => {
                         handleEdit(e, item.id);
                       }}
-                      className="bg-white rounded-3xl p-1"
+                      className="editbtn bg-white rounded-3xl p-1 transition-shadow duration-300"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +143,7 @@ function App() {
                       onClick={(e) => {
                         handleDelete(e, item.id);
                       }}
-                      className="bg-white rounded-3xl p-1"
+                      className="delbtn bg-white rounded-3xl p-1 transition-shadow duration-300"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
