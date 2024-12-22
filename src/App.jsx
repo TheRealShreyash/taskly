@@ -63,7 +63,7 @@ function App() {
 
   return (
     <>
-      <div className="container bg-diffYellow mx-auto my-16 w-[80vw] h-[80vh] min-h-[80vh] min-w-[80vw] rounded-2xl text-black font-comfortaa">
+      <div className="container bg-slightWhite mx-auto my-16 w-[80vw] h-[80vh] min-h-[80vh] min-w-[80vw] rounded-2xl text-black font-comfortaa">
         <div className="inputthing flex justify-center py-3">
           <input
             onChange={(e) => {
@@ -72,7 +72,7 @@ function App() {
             value={todo}
             type="text"
             name=""
-            className="rounded-l-xl p-1 w-[25rem] font-bold bg-diffBlue text-white"
+            className="rounded-l-xl p-1 w-[25rem] font-bold bg-risdBlue text-white"
             placeholder="Add a task..."
           />
           <button
@@ -97,7 +97,7 @@ function App() {
                     id=""
                   />
                   <p
-                    className={`todotext bg-diffBlue text-white font-bold rounded-xl p-2 ${
+                    className={`todotext bg-risdBlue text-white font-bold rounded-xl p-2 ${
                       item.isCompleted ? "line-through" : ""
                     }`}
                   >
